@@ -1,3 +1,6 @@
+# ignore all .DS_Store
 .DS_Store
-*.pdf
-*.mov
+# ignore all node_modules folder
+node_modules/
+# ignore all package-lock.json
+package-lock.json
