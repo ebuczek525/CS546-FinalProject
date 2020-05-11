@@ -1,5 +1,4 @@
 <script>
- import Gatekeeper from './Gatekeeper.svelte';
 </script>
 
 <style lang="sass">
@@ -13,6 +12,6 @@ h1
     </h1>
 </header>
   
-<main><Gatekeeper/></main>
+<main></main>
 
 <footer></footer>
