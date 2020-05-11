@@ -7,8 +7,8 @@
     <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
 </main>
 
-<style lang="text/sass">
-main
+<style type="text/sass">
+:global(main)
   text-align: center
   padding: 1em
   max-width: 240px
