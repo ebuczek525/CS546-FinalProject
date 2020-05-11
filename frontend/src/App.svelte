@@ -7,9 +7,7 @@ h1
 </style>
 
 <header>
-    <h1>
-	Welcome to DocPal
-    </h1>
+    <h1>Welcome to DocPal</h1>
 </header>
   
 <main></main>
