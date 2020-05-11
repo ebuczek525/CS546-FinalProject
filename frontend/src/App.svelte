@@ -1,30 +1,18 @@
 <script>
- export let name;
+ import Gatekeeper from './Gatekeeper.svelte';
 </script>
 
-<main>
-    <h1>DocPal</h1>
-    <p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-</main>
-
-<style>
- main {
-     text-align: center;
-     padding: 1em;
-     max-width: 240px;
-     margin: 0 auto;
- }
-
- h1 {
-     color: #ff3e00;
-     text-transform: uppercase;
-     font-size: 4em;
-     font-weight: 100;
- }
-
- @media (min-width: 640px) {
-     main {
-	 max-width: none;
-     }
- }
+<style lang="sass">
+h1
+  text-align: center
 </style>
+
+<header>
+    <h1>
+	Welcome to DocPal
+    </h1>
+</header>
+  
+<main><Gatekeeper/></main>
+
+<footer></footer>
