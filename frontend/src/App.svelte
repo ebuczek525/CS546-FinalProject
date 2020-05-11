@@ -1,9 +1,18 @@
-<script></script>
+<script>
+ import Gatekeeper from './Gatekeeper.svelte';
+</script>
 
-<style lang="sass"></style>
+<style lang="sass">
+h1
+  text-align: center
+</style>
 
-<header></header>
+<header>
+    <h1>
+	Welcome to DocPal
+    </h1>
+</header>
   
-<main></main>
+<main><Gatekeeper/></main>
 
 <footer></footer>
