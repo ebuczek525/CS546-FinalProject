@@ -1,16 +1,19 @@
 <script>
+  import Editor from './Editor.svelte';
 </script>
 
 <style lang="sass">
 h1
   text-align: center
-
+main
+  height: 100%
+  width: 100%
+  margin: 0
+  padding: 0
 </style>
 
-<header>
-    <h1>Welcome to DocPal</h1>
-</header>
+<header></header>
   
-<main></main>
+<main><Editor/></main>
 
 <footer></footer>
