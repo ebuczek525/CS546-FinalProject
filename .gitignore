@@ -4,3 +4,5 @@
 node_modules/
 # ignore all package-lock.json
 package-lock.json
+# ignore /build folder
+public/build
