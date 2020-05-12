@@ -1,6 +1,8 @@
 <script>
  export let text;
  export let goal;
+ export let fg;
+ export let bg;
  
  import FileMenu from './FileMenu.svelte';
  import SettingsMenu from './SettingsMenu.svelte';
@@ -27,7 +29,7 @@
 <div id="top-bar">
     <div id="top-menu-bar">
 	<FileMenu bind:text/>
-	<SettingsMenu bind:goal/>
+	<SettingsMenu bind:goal bind:fg bind:bg/>
 	<AboutMenu/>
     </div>
 </div>
