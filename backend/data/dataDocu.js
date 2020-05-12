@@ -1,7 +1,7 @@
 const mongoCollections = require('../config/mongoCollections')
 const users = mongoCollections.users
 const documents = mongoCollections.documents
-const { ObjectId } = require('mongodb')
+// const { ObjectId } = require('mongodb')
 
 
 /* add document */
@@ -43,14 +43,13 @@ async function getDocuByTitle(title) {
 
 
 /* modify all document information */
-async function modifyDocu(id, title, language, count, authorCode) {
+async function modifyDocu(id, title, language, count) {
     // const objID = ObjectId.createFromHexString(id);
     const docuColl = await documents();  // instantiate dbCollection("documents")
     const newDocu = {
         docuName: title,
         lang: language,
         usrWordCountGoal: count,
-        author: authorCode
     }
     const updatedDocu = await docuColl.updateOne({ _id: id }, { $set: newDocu });
     if (updatedDocu.modifiedCount === 0) { throw "Fail to update document information." }

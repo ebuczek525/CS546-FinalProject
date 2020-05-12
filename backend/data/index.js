@@ -1,7 +1,4 @@
-const usrData = require("./dataUsr");
-const docuData = require("./dataDocu");
-
 module.exports = {
-  usrData: usrData,
-  docuData: docuData
+  users: require("./dataUsr"),
+  documents: require("./dataDocu")
 }
