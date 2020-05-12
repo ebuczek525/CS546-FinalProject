@@ -11,7 +11,6 @@
 
 <style lang="sass">
 span
-     padding: 15px
      opacity: 50%
      &:hover
           opacity: 100%
