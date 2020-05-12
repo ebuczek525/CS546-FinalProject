@@ -9,7 +9,7 @@
  $: para = text.replace(/\n+/g, '\n').split('\n').filter(a => a != '').length;
  $: word = text.replace(/\s+/g, ' ').split(' ').filter(a => a != '').length;
  $: page = word / 250;
- const goal = 750; /* 3 pages as default goal value */
+ let goal = 500; /* 2 pages as default goal value */
 </script>
 
 <style lang="sass">
@@ -22,7 +22,7 @@ main
      padding: 0
 </style>
 
-<header><TopBar bind:text/></header>
+<header><TopBar bind:text bind:goal/></header>
 
 <main><Editor bind:value={text} /></main>
 
