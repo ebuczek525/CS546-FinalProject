@@ -16,8 +16,20 @@ app.use(session({
   saveUninitialized: true
 }));
 
+app.use('/public', (req, res, next) => req.session.user?
+	next() : res.redirect('/'));
+
+app.use('/login', (req, res, next) => {
+    if(!req.session.user) {
+	req.method = 'POST';
+	return next();
+    } else {
+	return res.redirect('/public');
+    }
+});
+
 configRoutes(app);
 
 app.listen(3000, () => {
   console.log('Your routes will be running on http://localhost:3000');
-})
+});
