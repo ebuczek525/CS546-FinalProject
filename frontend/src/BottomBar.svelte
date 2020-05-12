@@ -1,8 +1,12 @@
 <script>
  export let char;
+ export let word;
  export let para;
  export let page;
  export let goal;
+
+ $: goalPercent = +((word / goal) * 100).toFixed(1)
+ $: goalColor = goalPercent >= 100? 'green' : 'inherit';
 </script>
 
 <style lang="sass">
@@ -31,8 +35,9 @@ span
 <div id="bottom-bar">
     <div id="bottom-menu-bar">
 	<span>Characters: {char}</span>
+	<span>Words: {word}</span>
 	<span>Paragraphs: {para}</span>
-	<span>Pages: {page}</span>
-	<span>{char / goal}% of daily goal</span>
+	<span>Pages: {+(page).toFixed(1)}</span>
+	<span style="color: {goalColor}">{goalPercent}% of goal</span>
     </div>
 </div>
