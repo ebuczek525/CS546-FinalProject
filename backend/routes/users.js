@@ -20,22 +20,8 @@ router.post('/login', async (req, res) => {
 
     req.session.user = validLogin.username;
     req.session.users = validLogin;
-    res.redirect('/public');
+    res.redirect('/public/index.html');
 });
-
-// router.get('/public', (req, res) => {
-//     if (!req.session.user) {
-//         res.status(403).send('You are not logged in.');
-//     } else {
-// 	return router.use('/public', express.static(__dirname + '/public'));
-	
-//     }
-// });
-
-// router.get('/logout', (req, res) => {
-//     req.session.destroy();
-//     res.render('templates/logout.handlebars');
-// });
 
 const authenticate = async (user, pass) => {
     for (let id of users) {
