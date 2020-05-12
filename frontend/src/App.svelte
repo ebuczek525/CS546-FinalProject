@@ -22,7 +22,7 @@ main
      padding: 0
 </style>
 
-<header><TopBar {text}/></header>
+<header><TopBar bind:text/></header>
 
 <main><Editor bind:value={text} /></main>
 
