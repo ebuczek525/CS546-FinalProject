@@ -5,6 +5,8 @@ const users = require('../users');
 
 console.log(__dirname);
 
+router.get('/', (req, res) => res.sendFile('home.html', { root: './' }));
+
 // router.get('/', (req, res) => {
 //     if (req.session.user) {
 // 	res.redirect('/public');

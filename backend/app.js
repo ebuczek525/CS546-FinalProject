@@ -16,9 +16,14 @@ app.use(session({
   saveUninitialized: true
 }));
 
-app.use('/public', (req, res, next) => req.session.user?
-	next() : res.redirect('/'));
-
+app.use('/public', (req, res, next) => {
+    if(req.session.user) {
+	return express.static(__dirname + '/public')
+    } else {
+	res.redirect('/');
+    }
+});
+	
 app.use('/login', (req, res, next) => {
     if(!req.session.user) {
 	req.method = 'POST';
