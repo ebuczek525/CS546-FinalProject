@@ -12,6 +12,8 @@
   font-family: serif
   border: none
   outline: none
+  color: inherit;
+  background-color: inherit;
 </style>
 
 <textarea autofocus placeholder="Welcome to DocPal." id="editor" bind:value></textarea>
