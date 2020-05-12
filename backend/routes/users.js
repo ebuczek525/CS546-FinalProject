@@ -7,14 +7,6 @@ console.log(__dirname);
 
 router.get('/', (req, res) => res.sendFile('home.html', { root: './' }));
 
-// router.get('/', (req, res) => {
-//     if (req.session.user) {
-// 	res.redirect('/public');
-//     } else {
-//         res.sendFile('home.html', {root: './'});
-//     }
-// });
-
 router.post('/login', async (req, res) => {
     let user = JSON.stringify(req.body.username).replace(/"/g, "");
     let pass = JSON.stringify(req.body.password).replace(/"/g, "");
