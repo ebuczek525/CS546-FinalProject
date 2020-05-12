@@ -1,6 +1,6 @@
 # DocPal Back End
-This is the back-end for DocPal.
----
+###### This is the back-end for DocPal.
+
 ## Install
 *Note that you will need to have [Node.js](https://nodejs.org) installed.*
 
@@ -25,8 +25,6 @@ npm i express
 
 accepted.
 
-## Badge
+## License
 
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
-
-## License

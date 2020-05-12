@@ -4,15 +4,25 @@ const documents = mongoCollections.documents
 const { ObjectId } = require('mongodb')
 
 
-/*  */
+/* add document */
 async function addDocu(title, language, count, authorCode) {
     const docuColl = await documents();  // instantiate dbCollection("documents")
+
+    if (await docuColl.findOne({ docuName: title }) != null) {  // avoid duplicate
+        throw `"${title}" already exists.`
+    }
+
     const newDocu = {
         docuName: title,
-        lang: language,
+        lang: language,  // coding: ISO 639-1
         usrWordCountGoal: count,
-        author: authorCode
+        author: authorCode  // The ID of the author of the document
     }
+    // insert
+    const insertInfo = await docuColl.insertOne(newDocu);
+    if (insertInfo.insertedCount == 0) { throw "Fail to add document." }
+
+    return await this.getDocuByTitle(title);
 }
 
 
@@ -23,7 +33,7 @@ async function getAllDocu(authorCode) {
     return await docuColl.find({ author: authorCode }).toArray();
 }
 
-/* retrieve a document based on author ID */
+/* retrieve a document based on title */
 async function getDocuByTitle(title) {
     const docuColl = await documents();  // instantiate dbCollection("documents")
     const document = await docuColl.findOne({ docuName: title });
@@ -49,17 +59,15 @@ async function modifyDocu(id, title, language, count, authorCode) {
 
 /* remove document */
 async function removeDocu(title) {
-    // const objID = ObjectId.createFromHexString(id);
     const docuColl = await documents();  // instantiate dbCollection("documents")
 
     // remove from documents collection
     const deletionInfo = await docuColl.removeOne({ docuName: title });
-    if (deletionInfo.deletedCount === 0) { throw `Fail to delete document ${title}` }
-
-    return title;
+    if (deletionInfo.deletedCount === 0) { throw `Fail to delete ${title}` }
 }
 
 module.exports = {
+    addDocu,
     getAllDocu,
     getDocuByTitle,
     modifyDocu,
