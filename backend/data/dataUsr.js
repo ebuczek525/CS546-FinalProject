@@ -33,7 +33,7 @@ async function addUser(fn, ln, em, pw, config, wordCountGoal, wordCountProgress,
 async function getUsrByEm(em) {
     const usrColl = await users();  // instantiate dbCollection("users")
     const user = await usrColl.findOne({ email: em });
-    if (user == null) { throw "No user found." }
+    if (user == null) { throw `Could not find account with email address ${em}.` }
     return user;
 }
 
@@ -95,7 +95,7 @@ async function modifyDic(em, dic) {
         dictionary: dic
     }
     const updatedInfo = await usrColl.updateOne({ email: em }, { $set: newWordCount });
-    if (updatedInfo.modifiedCount == 0) { throw "Fail to change dictionary." }
+    if (updatedInfo.modifiedCount == 0) { throw "Fail to modify dictionary." }
     return await this.getUsrByEm(em);
 }
 
@@ -107,7 +107,7 @@ async function removeAcc(id, em = undefined, pw = undefined) {
 
     // remove from user collection
     const deletionInfo = await usrColl.deleteOne({ _id: id });
-    if (deletionInfo.deletedCount == 0) { throw `Fail to delete account` }
+    if (deletionInfo.deletedCount == 0) { throw `Fail to delete account.` }
     // remove associated documents
     await docuColl.deleteMany({ author: id });
 }
