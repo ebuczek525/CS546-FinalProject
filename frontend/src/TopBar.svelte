@@ -12,11 +12,16 @@
      width: 100%
      &:hover
           #top-menu-bar
-               display: block
+               display: flex
+               flex-direction: row
+               justify-content: space-around
 </style>
 
 <div id="top-bar">
     <div id="top-menu-bar">
-	File Edit View Help
+	<span>File</span>
+	<span>Edit</span>
+	<span>View</span>
+	<span>Help</span>
     </div>
 </div>

@@ -18,4 +18,4 @@ main
 
 <main><Editor/></main>
 
-<footer></footer>
+<footer><BottomBar/></footer>
