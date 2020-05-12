@@ -1,3 +1,7 @@
+<script>
+ export let value = '';
+</script>
+
 <style lang="sass">
 #editor
   display: absolute
@@ -10,4 +14,4 @@
   outline: none
 </style>
 
-<textarea autofocus placeholder="Welcome to DocPal." id="editor"></textarea>
+<textarea autofocus placeholder="Welcome to DocPal." id="editor" bind:value></textarea>

@@ -1,5 +1,9 @@
 <script>
-
+ export let text;
+ 
+ import FileMenu from './FileMenu.svelte';
+ import SettingsMenu from './SettingsMenu.svelte';
+ import AboutMenu from './AboutMenu.svelte';
 </script>
 
 <style lang="sass">
@@ -12,16 +16,17 @@
      width: 100%
      &:hover
           #top-menu-bar
+               height: 100%
                display: flex
                flex-direction: row
                justify-content: space-around
+               align-items: center
 </style>
 
 <div id="top-bar">
     <div id="top-menu-bar">
-	<span>File</span>
-	<span>Edit</span>
-	<span>View</span>
-	<span>Help</span>
+	<FileMenu {text}/>
+	<SettingsMenu/>
+	<AboutMenu/>
     </div>
 </div>
