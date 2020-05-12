@@ -1,6 +1,7 @@
 <script>
  import Editor from './Editor.svelte';
- 
+ import TopBar from './TopBar.svelte';
+ import BottomBar from './BottomBar.svelte';
 </script>
 
 <style lang="sass">
@@ -13,7 +14,7 @@
      padding: 0
 </style>
 
-<header></header>
+<header><TopBar/></header>
 
 <main><Editor/></main>
 
