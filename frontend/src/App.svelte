@@ -4,9 +4,9 @@
  import BottomBar from './BottomBar.svelte';
 
  let text = '';
- $: console.log(text);
- let char = 0;
- let para = 0;
+ 
+ $: char = text.split('').length;
+ $: para = text.replace(/\n+/g, '\n').split('\n').filter(a => a != '').length;
  let page = 0;
  let goal = 0;
 </script>
