@@ -1,8 +1,8 @@
 # DocPal Back End
 ###### This is the back-end for DocPal.
-
+---
 ## Install
-*Note that you will need to have [Node.js](https://nodejs.org) installed.*
+_Note that you will need to have [Node.js](https://nodejs.org) installed._
 
 The official [MongoDB](https://www.npmjs.com/package/mongodb) driver for Node.js.
 
@@ -10,10 +10,22 @@ The official [MongoDB](https://www.npmjs.com/package/mongodb) driver for Node.js
 npm i mongodb
 ```
 
-Module [express](https://www.npmjs.com/package/express).
+[express](https://www.npmjs.com/package/express).
 
 ```zsh
 npm i express
+```
+
+[express-session](https://www.npmjs.com/package/express-session)
+
+```zsh
+npm i express-session
+```
+
+[bcryptjs](https://www.npmjs.com/package/bcryptjs)
+
+```zsh
+npm i bcryptjs
 ```
 
 ## Usage
