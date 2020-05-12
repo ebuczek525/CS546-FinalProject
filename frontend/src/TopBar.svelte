@@ -25,7 +25,7 @@
 
 <div id="top-bar">
     <div id="top-menu-bar">
-	<FileMenu {text}/>
+	<FileMenu bind:text/>
 	<SettingsMenu/>
 	<AboutMenu/>
     </div>
