@@ -79,11 +79,17 @@ async function modifyAccInfo(fn, ln, em, pw = undefined) {
 /* change word count */
 async function modWordCount(em, wordCountGoal, wordCountProgress) {
     const usrColl = await users();  // instantiate dbCollection("users")
-    const newWordCount = {
-        usrWordCountGoal: wordCountGoal,
-        usrWordCountProgress: wordCountProgress
-    }
-    const updatedInfo = await usrColl.updateOne({ email: em }, { $set: newWordCount });
+
+    const updatedInfo = await usrColl.updateOne(
+        { email: em },
+        {
+            $set: {
+                usrWordCountGoal: wordCountGoal,
+                usrWordCountProgress: wordCountProgress
+            }
+        }
+    );
+
     if (updatedInfo.modifiedCount == 0) { throw "Fail to change word count." }
     return await this.getUsrByEm(em);
 }
@@ -94,12 +100,13 @@ async function modifyDic(em, dic) {
         throw "Dictionary should be a list [...]."
     }
     const usrColl = await users();  // instantiate dbCollection("users")
-    const newDic = {
-        dictionary: dic
-    }
-    const updatedInfo = await usrColl.updateOne({ email: em }, { $addToSet: newDic });
-    if (updatedInfo.modifiedCount == 0) { throw "Fail to modify dictionary." }
 
+    const updatedInfo = await usrColl.updateOne(
+        { email: em },
+        { $set: { dictionary: dic } }
+    );
+
+    if (updatedInfo.modifiedCount == 0) { throw "Fail to modify dictionary." }
     return await this.getUsrByEm(em);
 }
 
