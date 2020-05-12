@@ -4,7 +4,7 @@ const users = mongoCollections.users
 const documents = mongoCollections.documents
 
 
-async function addUser(fn, ln, em, pw, usrWordCountGoal, usrWordCountProgress, dictionary, setting) {
+async function addUser(fn, ln, em, pw, config, wordCountGoal, wordCountProgress, dic) {
     const usrColl = await users();  // instantiate dbCollection("users")
 
     if (await usrColl.findOne({ email: em }) != null) {  // avoid duplicate
@@ -16,10 +16,10 @@ async function addUser(fn, ln, em, pw, usrWordCountGoal, usrWordCountProgress, d
         lastname: ln,
         email: em,
         password: pw
-        // usrWordCountGoal,
-        // usrWordCountProgress,
-        // dictionary,
-        // setting
+        // usrWordCountGoal: wordCountGoal,
+        // usrWordCountProgress: wordCountProgress,
+        // dictionary: dic,
+        // setting: config
     }
     // insert
     const insertedInfo = await usrColl.insertOne(newUser);
@@ -71,8 +71,31 @@ async function modifyAccInfo(fn, ln, em, pw = undefined) {
         firstname: fn,
         lastname: ln
     }
-    const updatedUsr = await usrColl.updateOne({ email: em }, { $set: newAccInfo });  // update account info based on email
+    const updatedUsr = await usrColl.updateOne({ email: em }, { $set: newAccInfo });
     if (updatedUsr.modifiedCount == 0) { throw "Fail to modify account information." }
+    return await this.getUsrByEm(em);
+}
+
+/* change word count */
+async function modWordCount(em, wordCountGoal, wordCountProgress) {
+    const usrColl = await users();  // instantiate dbCollection("users")
+    const newWordCount = {
+        usrWordCountGoal: wordCountGoal,
+        usrWordCountProgress: wordCountProgress
+    }
+    const updatedInfo = await usrColl.updateOne({ email: em }, { $set: newWordCount });
+    if (updatedInfo.modifiedCount == 0) { throw "Fail to change word count." }
+    return await this.getUsrByEm(em);
+}
+
+/* change user dictionary */
+async function modifyDic(em, dic) {
+    const usrColl = await users();  // instantiate dbCollection("users")
+    const newDic = {
+        dictionary: dic
+    }
+    const updatedInfo = await usrColl.updateOne({ email: em }, { $set: newWordCount });
+    if (updatedInfo.modifiedCount == 0) { throw "Fail to change dictionary." }
     return await this.getUsrByEm(em);
 }
 
@@ -96,5 +119,6 @@ module.exports = {
     checkUsr,
     modifyLog,
     modifyAccInfo,
+    modWordCount,
     removeAcc
 }
