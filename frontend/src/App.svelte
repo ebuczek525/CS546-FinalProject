@@ -1,5 +1,4 @@
 <script>
- import Gatekeeper from './Gatekeeper.svelte';
 </script>
 
 <style lang="sass">
@@ -8,11 +7,9 @@ h1
 </style>
 
 <header>
-    <h1>
-	Welcome to DocPal
-    </h1>
+    <h1>Welcome to DocPal</h1>
 </header>
   
-<main><Gatekeeper/></main>
+<main></main>
 
 <footer></footer>
