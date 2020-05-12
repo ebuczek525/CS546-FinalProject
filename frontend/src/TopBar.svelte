@@ -2,6 +2,7 @@
  import FileMenu from './FileMenu.svelte';
  import SettingsMenu from './SettingsMenu.svelte';
  import AboutMenu from './AboutMenu.svelte';
+
 </script>
 
 <style lang="sass">

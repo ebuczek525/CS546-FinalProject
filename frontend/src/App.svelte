@@ -2,6 +2,13 @@
  import Editor from './Editor.svelte';
  import TopBar from './TopBar.svelte';
  import BottomBar from './BottomBar.svelte';
+
+ let text = '';
+ $: console.log(text);
+ let char = 0;
+ let para = 0;
+ let page = 0;
+ let goal = 0;
 </script>
 
 <style lang="sass">
@@ -16,6 +23,6 @@ main
 
 <header><TopBar/></header>
 
-<main><Editor/></main>
+<main><Editor bind:value={text} /></main>
 
-<footer><BottomBar/></footer>
+<footer><BottomBar {char} {para} {page} {goal}/></footer>

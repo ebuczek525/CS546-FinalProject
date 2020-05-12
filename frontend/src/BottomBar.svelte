@@ -1,5 +1,8 @@
 <script>
-
+ export let char;
+ export let para;
+ export let page;
+ export let goal;
 </script>
 
 <style lang="sass">
@@ -27,9 +30,9 @@ span
 
 <div id="bottom-bar">
     <div id="bottom-menu-bar">
-	<span>Characters: 0</span>
-	<span>Paragraphs: 0</span>
-	<span>Pages: 0</span>
-	<span>0% of daily goal</span>
+	<span>Characters: {char}</span>
+	<span>Paragraphs: {para}</span>
+	<span>Pages: {page}</span>
+	<span>{char / goal}% of daily goal</span>
     </div>
 </div>
