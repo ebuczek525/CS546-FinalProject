@@ -37,7 +37,7 @@ async function getAllDocu(authorCode) {
 async function getDocuByTitle(title) {
     const docuColl = await documents();  // instantiate dbCollection("documents")
     const document = await docuColl.findOne({ docuName: title });
-    if (document == null) { throw 'no album found with that id' }
+    if (document == null) { throw `Could not find ${title}.` }
     return document;
 }
 
@@ -53,7 +53,7 @@ async function modifyDocu(id, title, language, count, authorCode) {
         author: authorCode
     }
     const updatedDocu = await docuColl.updateOne({ _id: id }, { $set: newDocu });
-    if (updatedDocu.modifiedCount === 0) { throw 'could not update album' }
+    if (updatedDocu.modifiedCount === 0) { throw "Fail to update document information." }
     return await this.getDocuByTitle(title);
 }
 
