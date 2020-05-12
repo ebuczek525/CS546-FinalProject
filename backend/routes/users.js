@@ -3,13 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const users = require('../users');
 
-router.get('/', (req, res) => {
-    if (req.session.user) {
-        res.sendFile('index.html', {root: './public/'});
-    } else {
-        res.sendFile('home.html', {root: './'});
-    }
-});
+router.get('/', (req, res) => res.sendFile('home.html', { root: './' }));
 
 router.post('/login', async (req, res) => {
     let user = JSON.stringify(req.body.username).replace(/"/g, "");
@@ -24,21 +18,8 @@ router.post('/login', async (req, res) => {
 
     req.session.user = validLogin.username;
     req.session.users = validLogin;
-    res.sendFile('index.html', {root: './public/'});
+    res.redirect('/public/index.html');
 });
-
-// router.get('/private', (req, res) => {
-//     if (req.session.user) {
-//         res.redirect('./public/index.html');
-//     } else {
-//         res.status(403).send('You are not logged in.');
-//     }
-// });
-
-// router.get('/logout', (req, res) => {
-//     req.session.destroy();
-//     res.render('templates/logout.handlebars');
-// });
 
 const authenticate = async (user, pass) => {
     for (let id of users) {
