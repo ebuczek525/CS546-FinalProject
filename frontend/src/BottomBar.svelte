@@ -3,6 +3,10 @@
 </script>
 
 <style lang="sass">
+span
+     opacity: 50%
+     &:hover
+          opacity: 100%
 #bottom-menu-bar
      display: none
      font-family: sans-serif
@@ -13,10 +17,11 @@
      width: 100%
      &:hover
           #bottom-menu-bar
+               height: 100%
                display: flex
                flex-direction: row
                justify-content: space-around
- 
+               align-items: center
 </style>
 
 <div id="bottom-bar">
