@@ -1,1 +1,3 @@
-<div id="top-menu-bar">Top Bar</div>
+<div id="top-bar">
+    <div id="top-menu-bar"></div>
+</div>

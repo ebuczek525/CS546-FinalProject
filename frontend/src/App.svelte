@@ -5,9 +5,9 @@
 </script>
 
 <style lang="sass">
- h1
+h1
      text-align: center
- main
+main
      height: 100%
      width: 100%
      margin: 0
