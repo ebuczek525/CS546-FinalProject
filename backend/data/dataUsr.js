@@ -90,12 +90,16 @@ async function modWordCount(em, wordCountGoal, wordCountProgress) {
 
 /* change user dictionary */
 async function modifyDic(em, dic) {
+    if (!Array.isArray(dic)) {
+        throw "Dictionary should be a list [...]."
+    }
     const usrColl = await users();  // instantiate dbCollection("users")
     const newDic = {
         dictionary: dic
     }
-    const updatedInfo = await usrColl.updateOne({ email: em }, { $set: newWordCount });
+    const updatedInfo = await usrColl.updateOne({ email: em }, { $addToSet: newDic });
     if (updatedInfo.modifiedCount == 0) { throw "Fail to modify dictionary." }
+
     return await this.getUsrByEm(em);
 }
 
@@ -120,5 +124,6 @@ module.exports = {
     modifyLog,
     modifyAccInfo,
     modWordCount,
+    modifyDic,
     removeAcc
 }
