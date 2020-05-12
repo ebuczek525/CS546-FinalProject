@@ -7,8 +7,9 @@
  
  $: char = text.split('').length;
  $: para = text.replace(/\n+/g, '\n').split('\n').filter(a => a != '').length;
- let page = 0;
- let goal = 0;
+ $: word = text.replace(/\s+/g, ' ').split(' ').filter(a => a != '').length;
+ $: page = word / 250;
+ const goal = 750; /* 3 pages as default goal value */
 </script>
 
 <style lang="sass">
@@ -25,4 +26,4 @@ main
 
 <main><Editor bind:value={text} /></main>
 
-<footer><BottomBar {char} {para} {page} {goal}/></footer>
+<footer><BottomBar {char} {para} {word} {page} {goal}/></footer>
