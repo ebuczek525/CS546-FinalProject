@@ -3,8 +3,6 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const users = require('../users');
 
-console.log(__dirname);
-
 router.get('/', (req, res) => res.sendFile('home.html', { root: './' }));
 
 router.post('/login', async (req, res) => {
