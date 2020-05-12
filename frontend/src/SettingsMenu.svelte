@@ -1,5 +1,7 @@
 <script>
  export let goal;
+ export let fg;
+ export let bg;
  
  function openSettingsMenu() {
      document.getElementById('settings-menu').style.display = 'block';
@@ -15,6 +17,16 @@
      ['customize-theme', 'change-language', 'define-goal', 'settings-back']
 	 .forEach(n => document.getElementById(n).style.display = 'none');
      document.getElementById('theme-menu').style.display = 'inline';
+
+     
+     // set up event listener for FG/BG selectors
+     document.getElementById('fg-selector').addEventListener('input', e => {
+	 fg = e.target.value;
+     }, false);
+     
+     document.getElementById('bg-selector').addEventListener('input', e => {
+	 bg = e.target.value;
+     }, false);
  }
 
  function closeThemeMenu() {
@@ -32,6 +44,7 @@
      } while(isNaN(convertedGoal));
      goal = convertedGoal;
  }
+
 </script>
 
 <style lang="sass">
