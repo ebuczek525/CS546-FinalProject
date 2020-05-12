@@ -11,6 +11,18 @@
      document.getElementById('settings').style.display = 'inline';
  }
 
+ function openThemeMenu() {
+     ['customize-theme', 'change-language', 'define-goal', 'settings-back']
+	 .forEach(n => document.getElementById(n).style.display = 'none');
+     document.getElementById('theme-menu').style.display = 'inline';
+ }
+
+ function closeThemeMenu() {
+     ['customize-theme', 'change-language', 'define-goal', 'settings-back']
+	 .forEach(n => document.getElementById(n).style.display = 'inline');
+     document.getElementById('theme-menu').style.display = 'none';
+ }
+ 
  function setGoal() {
      var convertedGoal = NaN;
      do {
@@ -23,17 +35,24 @@
 </script>
 
 <style lang="sass">
-span
+span, label, input
  opacity: 50%
  &:hover
      opacity: 100%
-#settings-menu
+#settings-menu, #theme-menu
  display: none
 </style>
 
 <span id="settings" on:click={openSettingsMenu}>Settings</span>
-<div id="settings-menu" >
-    <span id="customize-theme">Change Theme</span>
+<div id="settings-menu">
+    <div id="theme-menu">
+	<label for="fg-selector">Foreground:</label>
+	<input type="color" value="#000000" id="fg-selector">
+	<label for="bg-selector">Background:</label>
+	<input type="color" value="#FFFFFF" id="bg-selector">
+	<span id="theme-back" on:click={closeThemeMenu}>Back</span>
+    </div>
+    <span id="customize-theme" on:click={openThemeMenu}>Change Theme</span>
     <span id="change-language">Change Language</span>
     <span id="define-goal" on:click={setGoal}>Set Goal</span>
     <span id="settings-back" on:click={closeFileMenu}>Back</span>
