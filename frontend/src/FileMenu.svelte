@@ -1,5 +1,25 @@
 <script>
  export let text;
+
+ async function getUserEmail() {
+     const res = await fetch('/me');
+     console.log(res);
+     if(res.status !== 200) {
+	 console.error(res);
+	 throw new Error(`Error: ${res.status} ${res.statusText}`);
+     } else {
+	 const body = await res.text();
+	 console.log(body);
+     }
+ }
+
+ async function saveFile() {
+     try {
+	 let email = await getUserEmail();
+     } catch(e) {
+	 alert(e.message);
+     }
+ }
  
  function openFileMenu() {
      document.getElementById('file-menu').style.display = 'block';
@@ -27,6 +47,8 @@
      upl.addEventListener('change', handler, false);
      upl.click();
  }
+
+ 
 </script>
 
 <style lang="sass">
@@ -40,7 +62,7 @@ span
 
 <span id="file" on:click={openFileMenu}>File</span>
 <div id="file-menu">
-    <span id="save">Save</span>
+    <span id="save" on:click={saveFile}>Save</span>
     <span id="restore">Restore</span>
     <span id="download" on:click={download}>Download</span>
     <span id="upload" on:click={upload}>Upload</span>
