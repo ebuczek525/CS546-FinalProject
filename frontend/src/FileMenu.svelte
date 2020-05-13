@@ -19,12 +19,12 @@
 	 const title = prompt('Title of document:\n');
 	 const res = await fetch('/db/docu', {
 	     method: 'POST',
-	     body: JSON.stringify({
-		 title,
+	     body: {
+		 title: title,
 		 language: 'en',
 		 count: 500,
-		 authorcode: email
-	     })
+		 authorCode: email
+	     }
 	 });
 	 console.log(res);
 	 if(!res.ok) {
