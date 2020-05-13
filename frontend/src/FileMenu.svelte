@@ -9,13 +9,24 @@
 	 throw new Error(`Error: ${res.status} ${res.statusText}`);
      } else {
 	 const body = await res.text();
-	 console.log(body);
+	 return body;
      }
  }
 
  async function saveFile() {
      try {
 	 let email = await getUserEmail();
+	 
+     } catch(e) {
+	 alert(e.message);
+     }
+ }
+
+ async function restoreFile() {
+     try {
+	 let email = await getUserEmail();
+	 const res = await fetch(`/${email}`);
+	 console.log(await res.json());
      } catch(e) {
 	 alert(e.message);
      }
@@ -63,7 +74,7 @@ span
 <span id="file" on:click={openFileMenu}>File</span>
 <div id="file-menu">
     <span id="save" on:click={saveFile}>Save</span>
-    <span id="restore">Restore</span>
+    <span id="restore" on:click={restoreFile}>Restore</span>
     <span id="download" on:click={download}>Download</span>
     <span id="upload" on:click={upload}>Upload</span>
     <span id="file-back" on:click={closeFileMenu}>Back</span>
