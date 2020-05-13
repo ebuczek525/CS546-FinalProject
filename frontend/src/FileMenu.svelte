@@ -16,7 +16,39 @@
  async function saveFile() {
      try {
 	 let email = await getUserEmail();
-	 
+	 const title = prompt('Title of document:\n');
+	 const res = await fetch('/db/docu', {
+	     method: 'POST',
+	     body: JSON.stringify({
+		 title,
+		 language: 'en',
+		 count: 500,
+		 authorcode: email
+	     })
+	 });
+	 console.log(res);
+	 if(!res.ok) {
+	     // server wasn't okay, but it might have been a duplicate
+	     const res_put = await fetch('/db/docu', {
+		 method: 'PUT',
+		 body: JSON.stringify({
+		     title,
+		     language: 'en',
+		     count: 500,
+		     authorcode: email
+		 })
+	     });
+	     console.log(res_put);
+	     if(!res_put.ok) {
+		 throw new Error(`${res.status} => ${res_put.status} ${res_put.statustext}`);
+	     } else {
+		 alert('success put');
+	     }
+	     
+	 } else {
+	     alert('success post');
+	     console.log(await res.json());
+	 }
      } catch(e) {
 	 alert(e.message);
      }
@@ -24,9 +56,9 @@
 
  async function restoreFile() {
      try {
-	 let email = await getUserEmail();
-	 const res = await fetch(`/${email}`);
-	 console.log(await res.json());
+	 /* let email = await getUserEmail();
+	    const res = await fetch(`/db/docu/${email}`);
+	    console.log(await res.json()); */
      } catch(e) {
 	 alert(e.message);
      }
