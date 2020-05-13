@@ -1,5 +1,13 @@
 <script>
  export let value = '';
+ export let selection = '';
+
+ function onSelect() {
+     const t = document.getElementById('editor');
+     selection = value.substring(t.selectionStart, t.selectionEnd); 
+ }
+ 
+ $: console.log(selection);
 </script>
 
 <style lang="sass">
@@ -16,4 +24,9 @@
   background-color: inherit;
 </style>
 
-<textarea autofocus placeholder="Welcome to DocPal." id="editor" bind:value></textarea>
+<textarea
+    autofocus
+    placeholder="Welcome to DocPal."
+    id="editor"
+    bind:value
+    on:select={onSelect}></textarea>
