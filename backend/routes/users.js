@@ -20,7 +20,7 @@ router.post('/login', async (req, res) => {
 
     if (validLogin === false) {
         res.set('Content-Type', 'text/html');
-        res.send(new Buffer('<html><head><title>Bad Login Attempt</title></head><body><p>You did not provide a valid username and/or password.</p><a href="/">Click here to return to the login page.</a></body></html>')).status(401);
+        res.send('<html><head><title>Bad Login Attempt</title></head><body><p>You did not provide a valid username and/or password.</p><a href="/">Click here to return to the login page.</a></body></html>').status(401);
         return;
     }
 
