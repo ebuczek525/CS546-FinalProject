@@ -33,6 +33,14 @@ app.use('/public/:file', (req, res, next) => {
     }
 });
 
+app.use('/me', (req, res, next) => {
+    if(req.session.user) {
+	return res.send(req.session.user);
+    } else {
+	return res.status(403).send('forbidden');
+    }
+});
+
 app.use('/login', (req, res, next) => {
     if(!req.session.user) {
 	req.method = 'POST';
