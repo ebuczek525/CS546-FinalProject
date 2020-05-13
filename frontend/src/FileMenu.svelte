@@ -19,12 +19,15 @@
 	 const title = prompt('Title of document:\n');
 	 const res = await fetch('/db/docu', {
 	     method: 'POST',
-	     body: {
+	     headers: {
+		 'Content-Type': 'application/json'
+	     },
+	     body: JSON.stringify({
 		 title: title,
 		 language: 'en',
 		 count: 500,
 		 authorCode: email
-	     }
+	     })
 	 });
 	 console.log(res);
 	 if(!res.ok) {
@@ -32,7 +35,7 @@
 	     const res_put = await fetch('/db/docu', {
 		 method: 'PUT',
 		 body: JSON.stringify({
-		     title,
+		     title: title,
 		     language: 'en',
 		     count: 500,
 		     authorcode: email
