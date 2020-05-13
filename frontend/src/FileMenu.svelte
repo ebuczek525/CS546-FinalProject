@@ -32,7 +32,12 @@
 	     })
 	 });
 	 console.log(res);
-	 if(!res.ok) throw new Error('failure');
+	 if(!res.ok) {
+	     throw new Error('failure');
+	 } else {
+	     // Created the resource successfully
+	     alert('New file saved successfully.');
+	 }
      } catch(e) {
 	 console.error(e.message);
 	 try {
@@ -54,7 +59,7 @@
 		 throw new Error(`${res_put.status} ${res_put.statustext}`);
 	     } else {
 		 console.log(await res_put.text());
-		 alert('success put');
+		 alert('File saved successfully.');
 	     }
 	 } catch(e) {
 	     // errors are indisgintuishable from double-saves, so just log them
@@ -77,7 +82,7 @@
 	     throw new Error(res.statusMessage);
 	 }
      } catch(e) {
-	 alert(e.message);
+	 alert('File does not exist.\nAre you sure you entered the name correctly?');
      }
  }
  
