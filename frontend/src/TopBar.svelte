@@ -7,6 +7,8 @@
  import FileMenu from './FileMenu.svelte';
  import SettingsMenu from './SettingsMenu.svelte';
  import AboutMenu from './AboutMenu.svelte';
+
+ let lang = 'en'; // Will be send to children
 </script>
 
 <style lang="sass">
@@ -28,8 +30,8 @@
 
 <div id="top-bar">
     <div id="top-menu-bar">
-	<FileMenu bind:text/>
-	<SettingsMenu bind:goal bind:fg bind:bg/>
+	<FileMenu bind:text bind:lang bind:goal/>
+	<SettingsMenu bind:goal bind:fg bind:bg bind:lang/>
 	<AboutMenu/>
     </div>
 </div>

@@ -1,6 +1,8 @@
 <script>
  export let text;
-
+ export let lang;
+ export let goal;
+ 
  async function getUserEmail() {
      const res = await fetch('/me');
      console.log(res);
@@ -25,8 +27,8 @@
 	     },
 	     body: JSON.stringify({
 		 title,
-		 language: 'en',
-		 count: 500,
+		 language: lang,
+		 count: goal,
 		 authorCode: email,
 		 text
 	     })
@@ -48,8 +50,8 @@
 		     'Content-Type': 'application/json'
 		 },
 		 body: JSON.stringify({
-		     language: 'en',
-		     count: 500,
+		     language: lang,
+		     count: goal,
 		     authorCode: email,
 		     text
 		 })
@@ -78,6 +80,9 @@
 	     const document = await res.json();
 	     console.log(document);
 	     text = document.text;
+	     goal = document.usrWordCountGoal;
+	     console.log(goal);
+	     lang = document.lang;
 	 } else {
 	     throw new Error(res.statusMessage);
 	 }
