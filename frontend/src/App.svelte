@@ -28,7 +28,7 @@ main, .body
 <div class="body" style="color: {fg}; background-color: {bg}">
     <header><TopBar bind:text bind:goal bind:fg bind:bg/></header>
 
-    <main><Editor bind:value={text} /></main>
+    <main><Editor bind:value={text}/></main>
     
     <footer><BottomBar {char} {para} {word} {page} {goal}/></footer>
 </div>
