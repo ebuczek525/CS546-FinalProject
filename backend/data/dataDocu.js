@@ -5,7 +5,7 @@ const documents = mongoCollections.documents
 
 
 /* add document */
-async function addDocu(title, language, count, authorCode) {
+async function addDocu(title, language, count, authorCode, text) {
     const docuColl = await documents();  // instantiate dbCollection("documents")
 
     if (await docuColl.findOne({ docuName: title }) != null) {  // avoid duplicate
@@ -16,8 +16,9 @@ async function addDocu(title, language, count, authorCode) {
         docuName: title,
         lang: language,  // coding: ISO 639-1
         usrWordCountGoal: count,
-        author: authorCode  // The ID of the author of the document
-    }
+        author: authorCode,  // The ID of the author of the document,
+	text: text	     // The content of the document
+    };
     // insert
     const insertInfo = await docuColl.insertOne(newDocu);
     if (insertInfo.insertedCount == 0) { throw "Fail to add document." }
@@ -43,13 +44,14 @@ async function getDocuByTitle(title) {
 
 
 /* modify all document information */
-async function modifyDocu(id, title, language, count) {
+async function modifyDocu(id, title, language, count, text) {
     // const objID = ObjectId.createFromHexString(id);
     const docuColl = await documents();  // instantiate dbCollection("documents")
     const newDocu = {
         docuName: title,
         lang: language,
         usrWordCountGoal: count,
+	text: text
     }
     const updatedDocu = await docuColl.updateOne({ _id: id }, { $set: newDocu });
     if (updatedDocu.modifiedCount === 0) { throw "Fail to update document information." }
