@@ -49,8 +49,7 @@
 	     }
 	     
 	 } else {
-	     alert('success post');
-	     console.log(await res.json());
+	     console.log(await res.text());
 	 }
      } catch(e) {
 	 alert(e.message);
