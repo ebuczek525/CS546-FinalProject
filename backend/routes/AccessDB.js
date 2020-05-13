@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
     let po = req.body;  // should take in fn, ln, em, pw
     try {
         const newUsr = await usrData.addUser(po.fn, po.ln, po.em, po.pw);
-        res.redirect('..');
+        res.send('success');
     } catch (error) {
         console.log(error);
         res.status(500).sendFile(path.join(__dirname, '../public/500.html'));
@@ -37,7 +37,7 @@ router.put('/word/:em', async (req, res) => {
     let pu = req.body;  // should take in em, wordCountGoal, wordCountProgress
     try {
         const updatedUsr = await usrData.modWordCount(req.params.em, pu.wordCountGoal, pu.wordCountProgress);
-        res.redirect('..');
+        res.send('success');
     } catch (error) {
         console.log(error);
         res.status(500).sendFile(path.join(__dirname, '../public/500.html'));
@@ -62,7 +62,7 @@ router.delete('/:id', async (req, res) => {
         await usrData.removeAcc(req.params.id);
         let feedback = new Object();
         feedback["deleted"] = true;
-        res.redirect('..');
+        res.send('success');
     } catch (error) {
         res.status(500).sendFile(path.join(__dirname, '../public/500.html'));
     }
@@ -76,7 +76,7 @@ router.post('/docu', async (req, res) => {
     let po = req.body;  // should take in title, language, count, authorcode
     try {
         const doc = await docuData.addDocu(po.title, po.language, po.count, po.authorCode);
-        res.redirect('..');
+        res.send('success');
     } catch (error) {
         console.log(error);
         res.status(500).sendFile(path.join(__dirname, '../public/500.html'));
@@ -112,7 +112,7 @@ router.delete('/docu/:title', async (req, res) => {
         await docuData.removeDocu(req.params.title);
         let feedback = new Object();
         feedback["deleted"] = true;
-        res.redirect('..');
+        res.send('success');
     } catch (error) {
         console.log(error);
         res.status(500).sendFile(path.join(__dirname, '../public/500.html'));
