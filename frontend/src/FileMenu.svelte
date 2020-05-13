@@ -23,10 +23,11 @@
 		 'Content-Type': 'application/json'
 	     },
 	     body: JSON.stringify({
-		 title: title,
+		 title,
 		 language: 'en',
 		 count: 500,
-		 authorCode: email
+		 authorCode: email,
+		 text
 	     })
 	 });
 	 console.log(res);
@@ -35,10 +36,11 @@
 	     const res_put = await fetch('/db/docu', {
 		 method: 'PUT',
 		 body: JSON.stringify({
-		     title: title,
+		     title,
 		     language: 'en',
 		     count: 500,
-		     authorcode: email
+		     authorcode: email,
+		     text
 		 })
 	     });
 	     console.log(res_put);
@@ -58,9 +60,16 @@
 
  async function restoreFile() {
      try {
-	 /* let email = await getUserEmail();
-	    const res = await fetch(`/db/docu/${email}`);
-	    console.log(await res.json()); */
+	 const email = await getUserEmail();
+	 const title = prompt('Enter title of document to restore:');
+	 const res = await fetch(`/db/docu/${title}`);
+	 if(res.ok) {
+	     const document = await res.json();
+	     console.log(document);
+	     text = document.text;
+	 } else {
+	     throw new Error(res.statusMessage);
+	 }
      } catch(e) {
 	 alert(e.message);
      }

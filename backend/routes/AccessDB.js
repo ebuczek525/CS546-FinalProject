@@ -73,9 +73,9 @@ router.delete('/:id', async (req, res) => {
 
 /* add document route */
 router.post('/docu', async (req, res) => {
-    let po = req.body;  // should take in title, language, count, authorcode
+    let po = req.body;  // should take in title, language, count, authorcode, text
     try {
-        const doc = await docuData.addDocu(po.title, po.language, po.count, po.authorCode);
+        const doc = await docuData.addDocu(po.title, po.language, po.count, po.authorCode, po.text);
         res.send('success');
     } catch (error) {
         console.log(error);
@@ -96,9 +96,9 @@ router.get('/docu/:title', async (req, res) => {
 
 /* modify document route */
 router.put('/docu/:id', async (req, res) => {
-    let pu = req.body;  // should take in em, wordCountGoal, wordCountProgress
+    let pu = req.body;  // should take in em, wordCountGoal, wordCountProgress, text
     try {
-        const doc = await docuData.modifyDocu(req.params.id, pu.title, pu.language, pu.count);
+        const doc = await docuData.modifyDocu(req.params.id, pu.title, pu.language, pu.count, po.text);
         res.send(doc);
     } catch (error) {
         console.log(error);
