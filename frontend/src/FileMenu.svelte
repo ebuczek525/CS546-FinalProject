@@ -8,7 +8,7 @@
 	 console.error(res);
 	 throw new Error(`Error: ${res.status} ${res.statusText}`);
      } else {
-	 const body = await res.json();
+	 const body = await res.text();
 	 console.log(body);
      }
  }
