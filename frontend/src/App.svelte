@@ -4,7 +4,8 @@
  import BottomBar from './BottomBar.svelte';
 
  let text = '';
- 
+
+ $: charNoWhiteSpace = text.replace(/\s/g, '').split('').length
  $: char = text.split('').length;
  $: para = text.replace(/\n+/g, '\n').split('\n').filter(a => a != '').length;
  $: word = text.replace(/\s+/g, ' ').split(' ').filter(a => a != '').length;
@@ -30,5 +31,5 @@ main, .body
 
     <main><Editor bind:value={text}/></main>
     
-    <footer><BottomBar {char} {para} {word} {page} {goal}/></footer>
+    <footer><BottomBar {charNoWhiteSpace} {char} {para} {word} {page} {goal}/></footer>
 </div>
