@@ -44,7 +44,7 @@ async function getDocuByTitle(title) {
 
 
 /* modify all document information */
-async function modifyDocu(id, title, language, count, text) {
+async function modifyDocu(title, language, count, text) {
     // const objID = ObjectId.createFromHexString(id);
     const docuColl = await documents();  // instantiate dbCollection("documents")
     const newDocu = {
@@ -53,7 +53,7 @@ async function modifyDocu(id, title, language, count, text) {
         usrWordCountGoal: count,
 	text: text
     }
-    const updatedDocu = await docuColl.updateOne({ _id: id }, { $set: newDocu });
+    const updatedDocu = await docuColl.updateOne({ docuName: title }, { $set: newDocu });
     if (updatedDocu.modifiedCount === 0) { throw "Fail to update document information." }
     return await this.getDocuByTitle(title);
 }
