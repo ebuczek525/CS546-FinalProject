@@ -32,6 +32,89 @@
 	     console.error(e);
 	 } 
      } else {
+	 // lemma _does_ exist in LinguaRobot
+	 const entry = ret.entries[0];
+
+	 // We're going to build a string containing the loosely-formatted
+	 // data to give to the user. It will like kinda like this:
+	 /* <Lemma>
+	  *
+	  * [
+	  *  (<part of speech>) {<pronunciation>}
+	  * Synonyms: <Syns>
+	  * Antonyms: <Ants>
+	  * [
+	  * Definition: <Def>
+	  * Examples:
+	  * [<Example>] For each `example` up to 3
+	  * ] For each `sense` up to 3
+	  * ] For each `lexeme` up to 3
+	  */
+
+	 // None of these are really guaranteed to exist except for lemma
+
+	 let alert_pages = [];
+
+	 const lemma = entry.entry;
+
+	 // try to find a transcript pronunciation
+	 let pronounce = '';
+	 for(let p of entry.pronunciations) { // pronunciations is an array of objs
+	     // we're trying to find entry.pronunciations.<#>.transcriptions.transcription
+	     if(p.transcriptions && p.transcriptions.transcription) {
+		 pronounce = p.transcription.transcription;
+		 break;
+	     } 
+	 }
+
+	 // lemma and pronounce is global, but each lexeme is scoped to an alert page
+	 // At this level we need a part of speech, synonyms, and antonyms
+	 for(let lexeme of entry.lexemes) { // array of objects
+	     let page = lemma;
+	     if(pronounce) page += ` {${pronounce}}}\n\n`;
+	     
+	     if(lexeme.synonymSets) {
+		 page += 'Synonyms: ';
+		 for(let syn of lexeme.synonymSets[0]) { // array of strings
+		     page += syn + ' ';
+		 }
+		 page += '\n';
+	     }
+
+	     if(lexeme.antonymSets) {
+		 page += 'Antonyms: ';
+		 for(let ant of lexeme.antonymSets[0]) { // array of strings
+		     page += ant + ' ';
+		 }
+		 page += '\n';
+	     }
+
+	     // Now we loop through each `sense` of the lexeme, appending
+	     // definitions and lists of examples
+
+	     if(lexeme.senses) {
+		 for(let sense of lexeme.senses) { // array of objects
+		     if(sense.definition) {
+			 page += `Definition: ${sense.definition}\n`;
+		     }
+
+		     if(sense.usageExamples) {
+			 for(let example uf usageExamples) { // array of strings
+			     page += `Example: ${example}\n`;
+			 }
+		     }
+		 }
+	     }
+
+	     // all the stuff that can be added has been added
+	     alert_pages.push(page);
+	 }
+	 
+	 // everything is done, let's render the data
+	 for(let page of alert_pages) { // array of strings
+	     alert(page);
+	 }
+	 
 	 
      }
      
