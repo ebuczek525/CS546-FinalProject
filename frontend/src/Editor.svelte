@@ -1,5 +1,19 @@
 <script>
  export let value = '';
+ export let selection = '';
+
+async function onSelect() {
+     const t = document.getElementById('editor');
+     selection = value.substring(t.selectionStart, t.selectionEnd); 
+
+     const ret = await ((await fetch(`/lingua/${selection}`)).json());
+
+     if(ret.entries.length === 0) {
+	 // lemma does not exist in LinguaRobot
+	 // look in personal user dictionary
+     }
+     
+ }
 </script>
 
 <style lang="sass">
@@ -16,4 +30,9 @@
   background-color: inherit;
 </style>
 
-<textarea autofocus placeholder="Welcome to DocPal." id="editor" bind:value></textarea>
+<textarea
+    autofocus
+    placeholder="Welcome to DocPal."
+    id="editor"
+    bind:value
+    on:select={onSelect}></textarea>
