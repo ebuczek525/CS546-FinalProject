@@ -16,6 +16,7 @@
  async function saveFile() {
      let email = await getUserEmail();
      const title = prompt('Title of document:\n');
+     if(!title) return; /* If the user cancels/enters nothing, just stop */
      try {
 	 const res = await fetch('/db/docu', {
 	     method: 'POST',
@@ -66,6 +67,7 @@
      try {
 	 const email = await getUserEmail();
 	 const title = prompt('Enter title of document to restore:');
+	 if(!title) return; /* If the user cancels, just stop */
 	 const res = await fetch(`/db/docu/${title}`);
 	 if(res.ok) {
 	     const document = await res.json();
