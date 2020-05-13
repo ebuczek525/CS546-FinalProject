@@ -2,6 +2,7 @@
  export let goal;
  export let fg;
  export let bg;
+ export let lang;
  
  function openSettingsMenu() {
      document.getElementById('settings-menu').style.display = 'block';
@@ -33,6 +34,13 @@
      ['customize-theme', 'change-language', 'define-goal', 'settings-back']
 	 .forEach(n => document.getElementById(n).style.display = 'inline');
      document.getElementById('theme-menu').style.display = 'none';
+ }
+
+ function setLanguage() {
+     const newLang = prompt('Enter new language:\n(Two-letter language code, eg "en")\n\n');
+     if(newLang) {
+	 lang = newLang;
+     }
  }
  
  function setGoal() {
@@ -67,7 +75,7 @@ span, label, input
 	<span id="theme-back" on:click={closeThemeMenu}>Back</span>
     </div>
     <span id="customize-theme" on:click={openThemeMenu}>Change Theme</span>
-    <span id="change-language">Change Language</span>
+    <span id="change-language" on:click={setLanguage}>Change Language</span>
     <span id="define-goal" on:click={setGoal}>Set Goal</span>
     <span id="settings-back" on:click={closeFileMenu}>Back</span>
 </div>

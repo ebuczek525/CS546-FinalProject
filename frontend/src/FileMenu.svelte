@@ -1,6 +1,8 @@
 <script>
  export let text;
-
+ export let lang;
+ export let goal;
+ 
  async function getUserEmail() {
      const res = await fetch('/me');
      console.log(res);
@@ -25,14 +27,19 @@
 	     },
 	     body: JSON.stringify({
 		 title,
-		 language: 'en',
-		 count: 500,
+		 language: lang,
+		 count: goal,
 		 authorCode: email,
 		 text
 	     })
 	 });
 	 console.log(res);
-	 if(!res.ok) throw new Error('failure');
+	 if(!res.ok) {
+	     throw new Error('failure');
+	 } else {
+	     // Created the resource successfully
+	     alert('New file saved successfully.');
+	 }
      } catch(e) {
 	 console.error(e.message);
 	 try {
@@ -43,8 +50,8 @@
 		     'Content-Type': 'application/json'
 		 },
 		 body: JSON.stringify({
-		     language: 'en',
-		     count: 500,
+		     language: lang,
+		     count: goal,
 		     authorCode: email,
 		     text
 		 })
@@ -54,7 +61,7 @@
 		 throw new Error(`${res_put.status} ${res_put.statustext}`);
 	     } else {
 		 console.log(await res_put.text());
-		 alert('success put');
+		 alert('File saved successfully.');
 	     }
 	 } catch(e) {
 	     // errors are indisgintuishable from double-saves, so just log them
@@ -73,11 +80,14 @@
 	     const document = await res.json();
 	     console.log(document);
 	     text = document.text;
+	     goal = document.usrWordCountGoal;
+	     console.log(goal);
+	     lang = document.lang;
 	 } else {
 	     throw new Error(res.statusMessage);
 	 }
      } catch(e) {
-	 alert(e.message);
+	 alert('File does not exist.\nAre you sure you entered the name correctly?');
      }
  }
  
