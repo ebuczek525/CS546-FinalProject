@@ -39,6 +39,7 @@
      var convertedGoal = NaN;
      do {
 	 const newGoal = prompt('Enter a new word count goal:\n');
+	 if(!newGoal) return; // If the user cancels, just stop
 	 convertedGoal = parseInt(newGoal, 10);
 	 if(isNaN(convertedGoal)) alert('That is not a valid word count.\nPlease try again.');
      } while(isNaN(convertedGoal));
