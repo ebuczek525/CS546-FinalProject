@@ -56,7 +56,8 @@
 		 alert('success put');
 	     }
 	 } catch(e) {
-	     alert(e.message);
+	     // errors are indisgintuishable from double-saves, so just log them
+	     console.error(e.message);
 	 }
      }
  }
