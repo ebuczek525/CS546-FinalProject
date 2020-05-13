@@ -39,7 +39,6 @@
 		     title,
 		     language: 'en',
 		     count: 500,
-		     authorcode: email,
 		     text
 		 })
 	     });
