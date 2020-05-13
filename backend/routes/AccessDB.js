@@ -74,7 +74,6 @@ router.delete('/:id', async (req, res) => {
 /* add document route */
 router.post('/docu', async (req, res) => {
     let po = req.body;  // should take in title, language, count, authorcode
-    console.table(po);
     try {
         const doc = await docuData.addDocu(po.title, po.language, po.count, po.authorCode);
         res.send('success');
