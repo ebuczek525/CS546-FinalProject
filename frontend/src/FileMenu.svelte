@@ -60,9 +60,16 @@
 
  async function restoreFile() {
      try {
-	 /* let email = await getUserEmail();
-	    const res = await fetch(`/db/docu/${email}`);
-	    console.log(await res.json()); */
+	 const email = await getUserEmail();
+	 const title = prompt('Enter title of document to restore:');
+	 const res = await fetch(`/db/docu/${title}`);
+	 if(res.ok) {
+	     const document = await res.json();
+	     console.log(document);
+	     text = document.text;
+	 } else {
+	     throw new Error(res.statusMessage);
+	 }
      } catch(e) {
 	 alert(e.message);
      }
