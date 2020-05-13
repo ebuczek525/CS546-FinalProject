@@ -95,10 +95,11 @@ router.get('/docu/:title', async (req, res) => {
 })
 
 /* modify document route */
-router.put('/docu/:id', async (req, res) => {
-    let pu = req.body;  // should take in em, wordCountGoal, wordCountProgress, text
+router.put('/docu/:title', async (req, res) => {
+    let pu = req.body;  // should take in lang, wordCountGoal, authorCode, text
     try {
-        const doc = await docuData.modifyDocu(pu.title, pu.language, pu.count, pu.text);
+	console.table(pu);
+        const doc = await docuData.modifyDocu(req.params.title, pu.language, pu.count, pu.authorCode, pu.text);
         res.send(doc);
     } catch (error) {
         console.log(error);

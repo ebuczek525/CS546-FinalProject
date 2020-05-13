@@ -14,9 +14,9 @@
  }
 
  async function saveFile() {
+     let email = await getUserEmail();
+     const title = prompt('Title of document:\n');
      try {
-	 let email = await getUserEmail();
-	 const title = prompt('Title of document:\n');
 	 const res = await fetch('/db/docu', {
 	     method: 'POST',
 	     headers: {
@@ -31,29 +31,33 @@
 	     })
 	 });
 	 console.log(res);
-	 if(!res.ok) {
+	 if(!res.ok) throw new Error('failure');
+     } catch(e) {
+	 console.error(e.message);
+	 try {
 	     // server wasn't okay, but it might have been a duplicate
-	     const res_put = await fetch('/db/docu', {
+	     const res_put = await fetch(`/db/docu/${title}`, {
 		 method: 'PUT',
+		 headers: {
+		     'Content-Type': 'application/json'
+		 },
 		 body: JSON.stringify({
-		     title,
 		     language: 'en',
 		     count: 500,
+		     authorCode: email,
 		     text
 		 })
 	     });
 	     console.log(res_put);
 	     if(!res_put.ok) {
-		 throw new Error(`${res.status} => ${res_put.status} ${res_put.statustext}`);
+		 throw new Error(`${res_put.status} ${res_put.statustext}`);
 	     } else {
+		 console.log(await res_put.text());
 		 alert('success put');
 	     }
-	     
-	 } else {
-	     console.log(await res.text());
+	 } catch(e) {
+	     alert(e.message);
 	 }
-     } catch(e) {
-	 alert(e.message);
      }
  }
 

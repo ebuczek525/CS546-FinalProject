@@ -44,13 +44,14 @@ async function getDocuByTitle(title) {
 
 
 /* modify all document information */
-async function modifyDocu(title, language, count, text) {
+async function modifyDocu(title, language, count, authorCode, text) {
     // const objID = ObjectId.createFromHexString(id);
     const docuColl = await documents();  // instantiate dbCollection("documents")
     const newDocu = {
         docuName: title,
         lang: language,
         usrWordCountGoal: count,
+	author: authorCode,
 	text: text
     }
     const updatedDocu = await docuColl.updateOne({ docuName: title }, { $set: newDocu });
