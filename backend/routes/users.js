@@ -3,7 +3,14 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const users = require('../users');
 
-router.get('/', (req, res) => res.sendFile('home.html', { root: './' }));
+router.get('/', (req, res) => {
+    
+    if(!req.session.user) {
+        res.sendFile('home.html', { root: './' })
+        } else {
+        return res.redirect('/public/index.html');
+        }
+});
 
 router.post('/login', async (req, res) => {
     let user = JSON.stringify(req.body.username).replace(/"/g, "");
