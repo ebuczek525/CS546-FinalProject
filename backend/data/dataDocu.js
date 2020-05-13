@@ -44,7 +44,7 @@ async function getDocuByTitle(title) {
 
 
 /* modify all document information */
-async function modifyDocu(title, language, count, author, text) {
+async function modifyDocu(title, language, count, text) {
     // const objID = ObjectId.createFromHexString(id);
     const docuColl = await documents();  // instantiate dbCollection("documents")
     const newDocu = {
