@@ -6,9 +6,13 @@ async function onSelect() {
      const t = document.getElementById('editor');
      selection = value.substring(t.selectionStart, t.selectionEnd); 
 
-     const ret = await fetch(`/lingua/${selection}`);
+     const ret = await ((await fetch(`/lingua/${selection}`)).json());
+
+     if(ret.entries.length === 0) {
+	 // lemma does not exist in LinguaRobot
+	 // look in personal user dictionary
+     }
      
-     console.log(ret);
  }
 </script>
 
