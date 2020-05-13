@@ -4,5 +4,9 @@
 node_modules/
 # ignore all package-lock.json
 package-lock.json
-# ignore /build folder
-*/public/build/
+# ignore /build folders and assets
+frontend/public/build
+backend/public/build
+backend/public/favicon.png
+backend/public/global.css
+backend/public/index.html
