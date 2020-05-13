@@ -23,10 +23,11 @@
 		 'Content-Type': 'application/json'
 	     },
 	     body: JSON.stringify({
-		 title: title,
+		 title,
 		 language: 'en',
 		 count: 500,
-		 authorCode: email
+		 authorCode: email,
+		 text
 	     })
 	 });
 	 console.log(res);
@@ -35,10 +36,11 @@
 	     const res_put = await fetch('/db/docu', {
 		 method: 'PUT',
 		 body: JSON.stringify({
-		     title: title,
+		     title,
 		     language: 'en',
 		     count: 500,
-		     authorcode: email
+		     authorcode: email,
+		     text
 		 })
 	     });
 	     console.log(res_put);
