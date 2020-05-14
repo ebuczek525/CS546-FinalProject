@@ -37,7 +37,7 @@
 		     if(def) {
 			 userInfoRet.dictionary[selection] = def;
 			 const insertDictRet = await fetch(`/db/dic/${email}`, {
-			     method: 'POST',
+			     method: 'PUT',
 			     headers: {
 				 'Content-Type': 'application/json',
 			     },
