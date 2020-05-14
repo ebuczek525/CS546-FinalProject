@@ -27,25 +27,26 @@
 	     const email = await getUserEmail();
 	     let userInfoRet = await (await fetch(`/db/${email}`)).json();
 	     console.log(userInfoRet);
-	     var dic = [];
-	     if(userInfoRet.dictionary && Array.isArray(userInfoRet.dictionary)) dic = userInfoRet.dictionary;
-	     if(selection in dic) {
-		 alert(`${selection}\n\n(in personal dictionary)`);
+	     if(!userInfoRet.dictionary) userInfoRet.dictionary = {};
+	     if(selection in userInfoRet.dictionary) {
+		 alert(`${selection}\n\nDefinition: ${userInfoRet.dictionary[selection]}`);
 	     } else {
 		 if(confirm(`${selection} is not a recognized word.\nAdd it to your dictionary?`)) {
 		     // add the selection to the user's dictionary
-		     dic.push(selection);
-		     console.log(dic);
-		     const insertDictRet = await fetch(`/db/dic/${email}`, {
-			 method: 'POST',
-			 headers: {
-			     'Content-Type': 'application/json',
-			 },
-			 body: JSON.stringify({
-			     dic: dic
-			 })
-		     });
-		     console.log(await insertDictRet.text());
+		     const def = prompt(`Enter definition for ${selection}:\n`);
+		     if(def) {
+			 userInfoRet.dictionary[selection] = def;
+			 const insertDictRet = await fetch(`/db/dic/${email}`, {
+			     method: 'POST',
+			     headers: {
+				 'Content-Type': 'application/json',
+			     },
+			     body: JSON.stringify({
+				 dic: userInfoRet.dictionary
+			     })
+			 });
+			 console.log(await insertDictRet.text());
+		     }
 		 } else {
 		     return;
 		 }

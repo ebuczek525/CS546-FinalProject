@@ -79,7 +79,6 @@ async function modifyAccInfo(fn, ln, em, pw = undefined) {
 /* change word count */
 async function modWordCount(em, wordCountGoal, wordCountProgress) {
     const usrColl = await users();  // instantiate dbCollection("users")
-
     const updatedInfo = await usrColl.updateOne(
         { email: em },
         {
@@ -97,7 +96,7 @@ async function modWordCount(em, wordCountGoal, wordCountProgress) {
 /* change user dictionary */
 async function modifyDic(em, dic) {
     const usrColl = await users();  // instantiate dbCollection("users")
-
+    consle.log(dic);
     const updatedInfo = await usrColl.updateOne(
         { email: em },
         { $set: { dictionary: dic } }
