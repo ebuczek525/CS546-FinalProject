@@ -1,2 +1,10 @@
-# CS546-FinalProject
-Final Project GitHub Repo for CS546 Web Programming - Spring 2020
+# DocPal
+Welcome to DocPal!
+
+DocPal is written in Svelte and Express.
+
+To deploy DocPal, run `build`. 
+To deploy DocPal manually; 
+
+* Run `npm i` in frontend/, then `npm run build`. Copy the entire frontend/public/ folder in to backend/
+* Run `npm i` in backend, then `npm start`. You're good to go!
