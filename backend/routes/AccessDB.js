@@ -48,7 +48,7 @@ router.put('/word/:em', async (req, res) => {
 router.put('/dic/:em', async (req, res) => {
     let pu = req.body;  // should take in em, wordCountGoal, wordCountProgress
     try {
-        const updatedUsr = await usrData.modifyDic(req.params.em, dic);
+        const updatedUsr = await usrData.modifyDic(req.params.em, pu.dic);
         res.send(updatedUsr["dictionary"]);
     } catch (error) {
         console.log(error);
