@@ -21,20 +21,20 @@
      const ret = await ((await fetch(`/lingua/${selection}`)).json());
      
      if(ret.entries.length === 0) {
-	 // lemma does not exist in LinguaRobot
+	 // selection does not exist in LinguaRobot
 	 // look in personal user dictionary
 	 try {
 	     const email = await getUserEmail();
 	     const userInfoRet = await (await fetch(`/db/${email}`)).json();
 	     console.log(userInfoRet);
-	     if(lemma in userInfoRet.dictionary) {
-		 alert(`${lemma}\n\nDefinition: ${userInfoRet.dictionary[lemma]}`);
+	     if(selection in userInfoRet.dictionary) {
+		 alert(`${selection}\n\nDefinition: ${userInfoRet.dictionary[selection]}`);
 	     } else {
-		 if(confirm(`${lemma} is not a recognized word.\nAdd it to your dictionary?`)) {
-		     // add the lemma to the user's dictionary
-		     const def = prompt(`Enter definition for ${lemma}:\n`);
+		 if(confirm(`${selection} is not a recognized word.\nAdd it to your dictionary?`)) {
+		     // add the selection to the user's dictionary
+		     const def = prompt(`Enter definition for ${selection}:\n`);
 		     if(def) {
-			 userInfoRet.dictionary[lemma] = def;
+			 userInfoRet.dictionary[selection] = def;
 			 const insertDictRet = await fetch(`/db/dic/${email}`, {
 			     method: 'POST',
 			     headers: {
