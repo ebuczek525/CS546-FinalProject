@@ -1,29 +1,215 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width,initial-scale=1'>
+<html>
+<head>
+  <title> DocPal Login and Registration </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+   *{
+       margin: 0;
+       padding: 0;
+       font-family: sand-serif;
+   }
 
-    <title>Login Screen</title>
-  </head>
+   .user-form{
+       height: 100%;
+       width: 100%;
+       /*background-image: url(practiceBackground.jpg);*/
+       background-image: url(logoBackgroundpng.png);
+       background-size: cover;
+       position: absolute;
+   }
 
-  <body>
+   .dropbtn{
+       background-color: #4CAF50;
+       color: white;
+       padding: 10px;
+       font-size: 10px;
+       border: none;
+   }
 
-    <h1>Login Form:</h1>
-    <form action="login" method="post" id="login-form">
-      <div>
-        <label class="username">Username:</label>
-        <input id="username" name="username">
-        <br>
+   .dropdown{
+       position: relative;
+       display: inline-block;
+   }
+
+   .dropdown-content{
+       display: none;
+       position: absolute;
+       background-color: #f1f1f1;
+       min-width: 160px;
+       box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+       z-index: 1;
+   }
+
+   .dropdown-content a{
+       color: black;
+       padding: 12px 16px;
+       text-decoration: none;
+       display: block;
+   }
+
+   .form-box{
+       height: 480px;
+       width: 380px;
+       position: relative;
+       margin: 6% auto;
+       /*background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(image.png);*/
+       background: #fff;
+       padding: 0;
+       overflow: hidden;
+   }
+
+   .button-box{
+       width: 220px;
+       margin: 35px auto;
+       position: relative;
+       box-shadow: 0 0 20px 9px #ff61241f;
+       border-radius: 30px;
+   }
+
+   .toggle-btn{
+       padding: 10px 30px;
+       cursor: pointer;
+       background: transparent;
+       border: 0;
+       outline: none;
+       position: relative;
+   }
+
+   #btn{
+       top: 0;
+       left: 0;
+       position: absolute;
+       height: 100%;
+       width: 110px;
+       background: linear-gradient(to right, #ff105f, #ffad06);
+       border-radius: 30px;
+       transition: 0.5s;
+   }
+
+   /*.sign-in-icons{
+      margin: 30px auto;
+      text-align: center;
+      }
+
+      .sign-in-icons img{
+      width: 30px;
+      } */
+
+   .input-group{
+       top: 180px;
+       position: absolute;
+       width: 280px;
+       transition: 0.5s;
+   }
+
+   .input-field{
+       width: 100%;
+       padding: 10px 0;
+       margin: 5px 0;
+       border-left: 0;
+       border-top: 0;
+       border-right: 0;
+       border-bottom: 1px solid #999;
+       outline: none;
+       background: transparent;
+   }
+
+   .submit-btn{
+       width: 85%;
+       padding: 10px 30px;
+       cursor: pointer;
+       display: block;
+       margin: auto;
+       background: linear-gradient(to right, #ff105f, #ffad06);
+       border: 0;
+       outline: none;
+       border-radius: 30px;
+   }
+
+   .check-box{
+       margin: 30px 10px 30px 0;
+   }
+
+   span{
+       color: #777;
+       font-size: 15px;
+       bottom: 68px;
+       position: absolute;
+   }
+
+   #login{
+       left: 50px;
+   }
+
+   #register{
+       left: 450px;
+   }
+
+  </style>
+</head>
+<body>
+  <div class="user-form">
+    <div class="form-box">
+      <!--<h6 style="text-align:right;" style="color:Tomato;" style="font-size:2em;"> Welcome to DocPal</h6>-->
+      <!--<div class="dropdown">
+         <button class="dropbtn"> Choose a Language </button>
+         <div class="dropdown-content">
+           <a href="#"> Chinese </a>
+           <a href="#"> English </a>
+           <a href="#"> Spanish </a>
+           <a href="#"> Arabic </a>
+           <a href="#"> Russian </a>
+         </div>
+      </div>--->
+      <div class="button-box">
+        <div id="btn"></div>
+        <button type="button" class="toggle-btn" onclick="login()"> Login </button>
+        <button type="button" class="toggle-btn" onclick="register()"> Register </button>
       </div>
-      <div>
-        <label class="password">Password:</label>
-        <input type="password" id="password" name="password">
-        <br>
-        <br>
-      </div>
-      <button type="submit" id="login">Sign in</button>
-    </form>
+      <h2 style="text-align:center;"> Welcome to DocPal</h2>
+      <form id="login" class="input-group" method="post">
+          <input name="username" type="email" class="input-field" placeholder="Enter Email" required>
+          <input name="password" type="text" class="input-field" placeholder="Enter Password" required>
+          <input type="checkbox" class="check-box"> <span> Remember Me </span>
+          <button type="submit" class="submit-btn" action="login"> Login </button>
+      </form>
+      <form id="register" class="input-group" method="post">
+          <input name="fn" type="text" class="input-field" placeholder="Enter First Name" required>
+          <input name="ln" type="text" class="input-field" placeholder="Enter Last Name" required>
+          <input name="em" type="email" class="input-field" placeholder="Enter Email" required>
+          <input name="pw" type="text" class="input-field" placeholder="Enter Password" required>
+          <input type="checkbox" class="check-box"> <span> I agree to the terms and services. </span>
+          <button type="submit" class="submit-btn" action="db"> Register </button>
+      </form>
+    </div>
+    <!--
+      <div class="sign-in-icons">
+      <img src="gmail.webp">
+      <img src="yahoo.jpeg">
+      <img src="outlook.jpg">
+    --->
+  </div>
 
-  </body>
+  <script>
+    var x = document.getElementById("login");
+    var y = document.getElementById("register");
+    var z = document.getElementById("btn");
+
+    function register(){
+      x.style.left = "-400px";
+      y.style.left = "50px";
+      z.style.left = "110px";
+    }
+
+    function login(){
+      x.style.left="50px";
+      y.style.left="450px";
+      z.style.left="0";
+    }
+
+    </script>
+
+</body>
+
 </html>
