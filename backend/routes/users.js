@@ -30,14 +30,8 @@ router.post('/login', async (req, res) => {
 });
 
 const authenticate = async (user, pass) => {
-    for (let id of users) {
-        if (user === id.username) {
-            if (await bcrypt.compare(pass, id.hashedPassword)) {
-                return id;
-            }
-        }
-    }
-    return false;
+    const checkUsr = await users.checkUsr(user, pass);
+    return checkUsr;
 };
 
 module.exports = router;
