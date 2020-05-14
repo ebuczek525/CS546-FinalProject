@@ -25,8 +25,9 @@
 	 // look in personal user dictionary
 	 try {
 	     const email = await getUserEmail();
-	     const userInfoRet = await (await fetch(`/db/${email}`)).json();
+	     let userInfoRet = await (await fetch(`/db/${email}`)).json();
 	     console.log(userInfoRet);
+	     if(!userInfoRet.dictionary) userInfoRet.dictionary = {};
 	     if(selection in userInfoRet.dictionary) {
 		 alert(`${selection}\n\nDefinition: ${userInfoRet.dictionary[selection]}`);
 	     } else {
@@ -40,9 +41,9 @@
 			     headers: {
 				 'Content-Type': 'application/json',
 			     },
-			     body: {
+			     body: JSON.stringify({
 				 dic: userInfoRet.dictionary
-			     }
+			     })
 			 });
 		     }
 		 } else {
