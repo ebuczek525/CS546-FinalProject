@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
     let po = req.body;  // should take in fn, ln, em, pw
     try {
         const newUsr = await usrData.addUser(po.fn, po.ln, po.em, po.pw);
-        res.send('success');
+        res.redirect('/public/index.html');
     } catch (error) {
         console.log(error);
         res.status(500).sendFile(path.join(__dirname, '../public/500.html'));
