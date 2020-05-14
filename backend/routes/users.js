@@ -4,7 +4,7 @@ const users = require('../data/dataUsr');
 
 router.get('/', (req, res) => {    
     if(!req.session.user) {
-        res.sendFile('home.html', { root: './' })
+        res.sendFile('home.html', { root: './' });
         } else {
         return res.redirect('/public/index.html');
         }
