@@ -35,6 +35,7 @@
 		 if(confirm(`${selection} is not a recognized word.\nAdd it to your dictionary?`)) {
 		     // add the selection to the user's dictionary
 		     dic.push(selection);
+		     console.log(dic);
 		     const insertDictRet = await fetch(`/db/dic/${email}`, {
 			 method: 'POST',
 			 headers: {
