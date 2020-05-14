@@ -2,8 +2,7 @@ const express = require('express');
 const router = express.Router();
 const users = require('../data/dataUsr');
 
-router.get('/', (req, res) => {
-    
+router.get('/', (req, res) => {    
     if(!req.session.user) {
         res.sendFile('home.html', { root: './' })
         } else {
