@@ -11,9 +11,10 @@ const path = require('path')
 /* register db route */
 router.post('/', async (req, res) => {
     let po = req.body;  // should take in fn, ln, em, pw
+    let hashPass = await bcrypt.hash(po.pw, 10);
     try {
-        const newUsr = await usrData.addUser(po.fn, po.ln, po.em, po.pw);
-	res.send('<html><head><title>Registration successful.</title></head><body><p>Registration successful.</p><a href="/"> You may now log in.</a></body></html>');
+        const newUsr = await usrData.addUser(po.fn, po.ln, po.em, hashPass);
+        res.send('<html><head><title>Registration</title></head><body><p>Registration Successful!</p><a href="/">Click here to return to the login page.</a></body></html>');
     } catch (error) {
         console.log(error);
         res.status(500).sendFile(path.join(__dirname, '../public/500.html'));
