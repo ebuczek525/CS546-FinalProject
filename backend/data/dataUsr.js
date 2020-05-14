@@ -4,7 +4,7 @@ const users = mongoCollections.users
 const documents = mongoCollections.documents
 
 
-async function addUser(fn, ln, em, pw, config, wordCountGoal, wordCountProgress, dic = {}) {
+async function addUser(fn, ln, em, pw, config, wordCountGoal, wordCountProgress, dic = []) {
     const usrColl = await users();  // instantiate dbCollection("users")
 
     if (await usrColl.findOne({ email: em }) != null) {  // avoid duplicate
