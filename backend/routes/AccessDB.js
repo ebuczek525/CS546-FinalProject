@@ -52,8 +52,8 @@ router.put('/dic/:em', async (req, res) => {
         const updatedUsr = await usrData.modifyDic(req.params.em, pu.dic);
         res.send(updatedUsr["dictionary"]);
     } catch (error) {
-        console.log(error);
-        res.status(500).sendFile(path.join(__dirname, '../public/500.html'));
+        console.log(error.message);
+        res.status(500).send(error);
     }
 })
 
