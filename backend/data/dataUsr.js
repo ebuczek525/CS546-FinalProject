@@ -4,7 +4,7 @@ const users = mongoCollections.users
 const documents = mongoCollections.documents
 
 
-async function addUser(fn, ln, em, pw, config, wordCountGoal, wordCountProgress, dic) {
+async function addUser(fn, ln, em, pw, config, wordCountGoal, wordCountProgress, dic = {}) {
     const usrColl = await users();  // instantiate dbCollection("users")
 
     if (await usrColl.findOne({ email: em }) != null) {  // avoid duplicate
@@ -15,10 +15,10 @@ async function addUser(fn, ln, em, pw, config, wordCountGoal, wordCountProgress,
         firstname: fn,
         lastname: ln,
         email: em,
-        password: pw
+        password: pw,
         // usrWordCountGoal: wordCountGoal,
         // usrWordCountProgress: wordCountProgress,
-        // dictionary: dic,
+        dictionary: dic,
         // setting: config
     }
     // insert
@@ -96,9 +96,6 @@ async function modWordCount(em, wordCountGoal, wordCountProgress) {
 
 /* change user dictionary */
 async function modifyDic(em, dic) {
-    if (!Array.isArray(dic)) {
-        throw "Dictionary should be a list [...]."
-    }
     const usrColl = await users();  // instantiate dbCollection("users")
 
     const updatedInfo = await usrColl.updateOne(

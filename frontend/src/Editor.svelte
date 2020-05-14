@@ -45,6 +45,7 @@
 				 dic: userInfoRet.dictionary
 			     })
 			 });
+			 console.log(await insertDictRet.text());
 		     }
 		 } else {
 		     return;
