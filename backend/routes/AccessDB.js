@@ -13,6 +13,7 @@ router.post('/', async (req, res) => {
     let po = req.body;  // should take in fn, ln, em, pw
     try {
         const newUsr = await usrData.addUser(po.fn, po.ln, po.em, po.pw);
+	res.send('<html><head><title>Registration successful.</title></head><body><p>Registration successful.</p><a href="/"> You may now log in.</a></body></html>');
         res.redirect('/public/index.html');
     } catch (error) {
         console.log(error);
