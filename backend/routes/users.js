@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 const users = require('../data/dataUsr');
 
-router.get('/', (req, res) => {    
+router.get('/', (req, res) => {
+    
     if(!req.session.user) {
-        res.sendFile('home.html', { root: './' });
+        res.sendFile('home.html', { root: './' })
         } else {
         return res.redirect('/public/index.html');
         }
@@ -22,7 +23,7 @@ router.post('/login', async (req, res) => {
         return;
     }
 
-    req.session.user = validLogin.username;
+    req.session.user = req.body.username;
     req.session.users = validLogin;
     res.redirect('/public/index.html');
 });
