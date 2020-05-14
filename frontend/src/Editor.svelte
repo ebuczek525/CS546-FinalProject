@@ -25,9 +25,30 @@
 	 // look in personal user dictionary
 	 try {
 	     const email = await getUserEmail();
-	     const userInfo = await fetch(`/db/${email}`);
-	     console.log(userInfo);
-	     alert('TODO');
+	     const userInfoRet = await (await fetch(`/db/${email}`)).json();
+	     console.log(userInfoRet);
+	     if(lemma in userInfoRet.dictionary) {
+		 alert(`${lemma}\n\nDefinition: ${userInfoRet.dictionary[lemma]}`);
+	     } else {
+		 if(confirm(`${lemma} is not a recognized word.\nAdd it to your dictionary?`)) {
+		     // add the lemma to the user's dictionary
+		     const def = prompt(`Enter definition for ${lemma}:\n`);
+		     if(def) {
+			 userInfoRet.dictionary[lemma] = def;
+			 const insertDictRet = await fetch(`/db/dic/${email}`, {
+			     method: 'POST',
+			     headers: {
+				 'Content-Type': 'application/json',
+			     },
+			     body: {
+				 dic: userInfoRet.dictionary
+			     }
+			 });
+		     }
+		 } else {
+		     return;
+		 }
+	     }
 	 } catch(e) {
 	     console.error(e);
 	 } 
