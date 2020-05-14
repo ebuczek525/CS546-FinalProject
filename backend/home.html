@@ -168,19 +168,19 @@
         <button type="button" class="toggle-btn" onclick="register()"> Register </button>
       </div>
       <h2 style="text-align:center;"> Welcome to DocPal</h2>
-      <form id="login" class="input-group" method="post">
+      <form id="login" class="input-group" method="post" action="login">
           <input name="username" type="email" class="input-field" placeholder="Enter Email" required>
           <input name="password" type="text" class="input-field" placeholder="Enter Password" required>
           <input type="checkbox" class="check-box"> <span> Remember Me </span>
-          <button type="submit" class="submit-btn" action="login"> Login </button>
+          <button type="submit" class="submit-btn"> Login </button>
       </form>
-      <form id="register" class="input-group" method="post">
+      <form id="register" class="input-group" method="post" action="db">
           <input name="fn" type="text" class="input-field" placeholder="Enter First Name" required>
           <input name="ln" type="text" class="input-field" placeholder="Enter Last Name" required>
           <input name="em" type="email" class="input-field" placeholder="Enter Email" required>
           <input name="pw" type="text" class="input-field" placeholder="Enter Password" required>
           <input type="checkbox" class="check-box"> <span> I agree to the terms and services. </span>
-          <button type="submit" class="submit-btn" action="db"> Register </button>
+          <button type="submit" class="submit-btn"> Register </button>
       </form>
     </div>
     <!--
