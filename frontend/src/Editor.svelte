@@ -70,25 +70,28 @@
 	 // lemma and pronounce is global, but each lexeme is scoped to an alert page
 	 // At this level we need a part of speech, synonyms, and antonyms
 	 for(let lexeme of entry.lexemes) { // array of objects
-	     let page = lemma;
+	     let page = lemma + '\n';
 	     if(pronounce) page += ` {${pronounce}}}\n\n`;
 	     
 	     if(lexeme.synonymSets) {
 		 page += 'Synonyms: ';
-		 for(let syn of lexeme.synonymSets[0]) { // array of strings
-		     page += syn + ' ';
+		 for(let syn of lexeme.synonymSets[0].synonyms) { // array of strings
+		     page += syn + ', ';
 		 }
 		 page += '\n';
 	     }
 
 	     if(lexeme.antonymSets) {
 		 page += 'Antonyms: ';
-		 for(let ant of lexeme.antonymSets[0]) { // array of strings
-		     page += ant + ' ';
+		 for(let ant of lexeme.antonymSets[0].antonyms) { // array of strings
+		     page += ant + ', ';
 		 }
+		 page = page.slice(0, -2);
 		 page += '\n';
 	     }
 
+	     page += '\n';
+	     
 	     // Now we loop through each `sense` of the lexeme, appending
 	     // definitions and lists of examples
 
@@ -99,10 +102,11 @@
 		     }
 
 		     if(sense.usageExamples) {
-			 for(let example uf usageExamples) { // array of strings
+			 for(let example of sense.usageExamples) { // array of strings
 			     page += `Example: ${example}\n`;
 			 }
 		     }
+		     page += '\n';
 		 }
 	     }
 
