@@ -10,3 +10,6 @@ backend/public/build
 backend/public/favicon.png
 backend/public/global.css
 backend/public/index.html
+# ignore media
+.mp4
+.mov
